@@ -12,15 +12,20 @@
     <div class="credit-card">
       <p class="credit-card__text">Want to check you if your credit card is valid?</p>
       <input type="text" id="userInput" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(event)">
-      <div class="js-return-info"></div>
       <p class="credit-cart__warning">Remember not to reveal your credit card number to<br> strangers like myself. Use a number generator instead.</p>
+      <div><p class="js-return-valid"></p></div>
+      <div><p class="js-return-invalid"></p></div>
+      
     </div>
   </div>
   <script>
     const valid1 = 4539677908016808;
+    const valid4 = 6011144340682905;
     const invalid1 = 4532778771091795;
     const invalid2 = 5795593392134643;
 
+    const displayValid = document.querySelector('.js-return-valid');
+    const displayInvalid = document.querySelector('.js-return-invalid');
     let input  = '';
 
     
@@ -28,15 +33,19 @@
       
       if (event.key === 'Enter') {
         input = document.getElementById("userInput").value;
-        
-        
         input = String(input).split('').map((input
         ) => { return Number(input) });
         
-        console.log(validateCred(input));
-         
-      } 
+        console.log(validateCred(input));  
+
+        // starting here
+
+        if (!validateCred(input)) 
+          { return displayInvalid.innerHTML = `This number is not valid.`} else {
+         return displayValid.innerHTML = `This number is valid.`
+          }
       
+      } 
       return input;
     }
     

@@ -22,12 +22,17 @@ body {
 }
 
 .credit-card__text,
-.credit-cart__warning {
+.credit-cart__warning,
+p {
   margin-left: 2em;
 }
 
-.credit-cart__warning {
-  padding-top: 4em;
+.js-return-valid {
+  color: green;
+}
+
+.js-return-invalid {
+  color: red;
 }
 
 input {
