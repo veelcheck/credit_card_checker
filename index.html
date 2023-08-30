@@ -11,21 +11,84 @@
   <div class="container">
     <div class="credit-card">
       <p class="credit-card__text">Want to check you if your credit card is valid?</p>
-      <input type="text" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(inputElement);">
+      <input type="text" id="userInput" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(event)">
+      <div class="js-return-info"></div>
       <p class="credit-cart__warning">Remember not to reveal your credit card number to<br> strangers like myself. Use a number generator instead.</p>
     </div>
   </div>
   <script>
-    
-    const inputElement = document.querySelector('.js-input');
+    const valid1 = 4539677908016808;
+    const invalid1 = 4532778771091795;
+    const invalid2 = 5795593392134643;
 
-  
-    function handleEnter(inputElement) {
-      const numToValidate = [];
-      if(event.key === 'Enter') {
-          console.log(inputElement.value);        
+    let input  = '';
+
+    
+    function handleEnter(event) {
+      
+      if (event.key === 'Enter') {
+        input = document.getElementById("userInput").value;
+        
+        
+        input = String(input).split('').map((input
+        ) => { return Number(input) });
+        
+        console.log(validateCred(input));
+         
+      } 
+      
+      return input;
+    }
+    
+    
+    
+
+    // Checks if the summed up numbers devided by 10 give 0.
+    function modulo10(num) {
+      if (num % 10 === 0) {
+        return true;
+      } else {
+        return false;
       }
     }
+
+    // Sums up checked and doubled digits.
+    function totalValue(array) {
+      let total = 0;
+      array.forEach(num => {
+        total +=num;
+      });
+      return total;
+    }
+    
+    // Takes an array of numbers, doubles every second number starting from the end, and substracts 9 if the doubled digit is greater than 9. Then usues totalValue function to sum it up and saves and returns the result as a const with modulo10() on it.
+
+    function validateCred(array) {
+      const checkedDigitArray = [];
+      const doubledArray = [];
+
+      for (let i = array.length - 1; i >= 0; i-= 2) {
+        const checkedDigit = array[i];
+        checkedDigitArray.push(checkedDigit);
+      }
+
+      for (let i = array.length - 2; i >= 0; i-= 2) {
+        const everyOtherDigit = array[i];
+        let makeItDouble = everyOtherDigit * 2;
+          if (makeItDouble > 9) {
+            makeItDouble -= 9;
+          }
+        doubledArray.push(makeItDouble);
+      }
+
+      const allDigitsArray = checkedDigitArray.concat(doubledArray); //.concat łączy dwie tablice w jedną.
+
+      const checkWithModulo = modulo10((totalValue(allDigitsArray)));
+      return checkWithModulo;
+      
+    };
+
+
     
 
   </script>
