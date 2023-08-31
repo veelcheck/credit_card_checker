@@ -27,46 +27,54 @@
 
     const displayValid = document.getElementById('js-return-valid');
     const displayInvalid = document.getElementById('js-return-invalid');
-    let input  = '';
-    let timeoutId;
+    let input;
+    let validTimeoutId;
+    let invalidTimeoutId;
 
     
     function handleEnter(event) {
       
       if (event.key === 'Enter') {
-        clearTimeout(timeoutId);
+        input = document.getElementById("userInput").value;
+        input = String(input).split('').map((input
+        ) => { return Number(input) });
+
+        if (input.length === 0) {
+          displayValid.style.display = 'none';
+          displayInvalid.style.display = 'none';
+          return;
+        }
 
         displayValid.style.display = "block";
         displayInvalid.style.display = "block";
 
-        input = document.getElementById("userInput").value;
-        input = String(input).split('').map((input
-        ) => { return Number(input) });
-        
+        clearTimeout(validTimeoutId);
+        clearTimeout(invalidTimeoutId);
+
         console.log(input);
         console.log(validateCred(input));  
 
         if (!validateCred(input)) { 
          
-          displayInvalid.innerHTML = 'This number is not valid.';
-          displayValid.innerHTML = ''; 
-
-          let timeoutId = setTimeout(function() {
-                displayInvalid.style.display = "none";
-            }, 2000);
-          
+          displayInvalid.textContent = 'This number is not valid.';
+          displayValid.style.display = "none";
+          invalidTimeoutId = setTimeout(() => {
+                displayInvalid.style.display = 'none';
+            }, 2000); 
+            
         } else {
           
-            displayValid.innerHTML = `This number is valid.`;
-            displayInvalid.innerHTML = '';
+            displayValid.textContent = `This number is valid.`;
+            displayInvalid.style.display = "none"
+            document.getElementById("userInput").value = null;
 
-            timeoutId = setTimeout(function() {
+           validTimeoutId = setTimeout(function() {
                 displayValid.style.display = "none";
             }, 2000);
           }
 
-      document.getElementById("userInput").value = null;
-
+      
+          document.getElementById("userInput").value = null;
         } 
     }
     
