@@ -11,13 +11,12 @@
   <div class="container">
     <div class="credit-card">
       <p class="credit-card__text">Want to check you if your credit card is valid?</p>
-      <input type="text" id="userInput" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(event)">
+      <input type="number" id="userInput" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(event)">
       <p class="credit-cart__warning">Remember not to reveal your credit card number to<br> strangers like myself. Use a number generator instead.</p>
       <div>
         <p id="js-return-valid"></p>
         <p id="js-return-invalid"></p>
       </div>
-      
     </div>
   </div>
   <script>
@@ -29,43 +28,50 @@
     const displayValid = document.getElementById('js-return-valid');
     const displayInvalid = document.getElementById('js-return-invalid');
     let input  = '';
+    let timeoutId;
 
     
     function handleEnter(event) {
       
       if (event.key === 'Enter') {
+        clearTimeout(timeoutId);
+
+        displayValid.style.display = "block";
+        displayInvalid.style.display = "block";
+
         input = document.getElementById("userInput").value;
         input = String(input).split('').map((input
         ) => { return Number(input) });
         
+        console.log(input);
         console.log(validateCred(input));  
-        
-        // starting here
 
         if (!validateCred(input)) { 
          
-            displayValid.innerHTML = '';
-            setTimeout(function() {
-                displayInvalid.style.display = "none";
-            }, 3000);
-            
-            return displayInvalid.innerHTML = `This number is not valid.`;
-         // }
-       } else {
-           
-            displayInvalid.innerHTML = '';
-            setTimeout(function() {
-                displayValid.style.display = "none";
-            }, 3000);
+          displayInvalid.innerHTML = 'This number is not valid.';
+          displayValid.innerHTML = ''; 
 
-            return displayValid.innerHTML = `This number is valid.`;
-            }
+          let timeoutId = setTimeout(function() {
+                displayInvalid.style.display = "none";
+            }, 2000);
+          
+        } else {
+          
+            displayValid.innerHTML = `This number is valid.`;
+            displayInvalid.innerHTML = '';
+
+            timeoutId = setTimeout(function() {
+                displayValid.style.display = "none";
+            }, 2000);
+          }
+
+      document.getElementById("userInput").value = null;
+
         } 
     }
     
 
-    
-
+  
     // Checks if the summed up numbers devided by 10 give 0.
     function modulo10(num) {
       if (num % 10 === 0) {
