@@ -27,11 +27,11 @@ p {
   margin-left: 2em;
 }
 
-.js-return-valid {
+#js-return-valid {
   color: green;
 }
 
-.js-return-invalid {
+#js-return-invalid {
   color: red;
 }
 
