@@ -61,16 +61,14 @@
           invalidTimeoutId = setTimeout(() => {
                 displayInvalid.style.display = 'none';
             }, 2000); 
-            
+
         } else {
           
             displayValid.textContent = `This number is valid.`;
             displayInvalid.style.display = "none"
-            document.getElementById("userInput").value = null;
-
-           validTimeoutId = setTimeout(function() {
-                displayValid.style.display = "none";
-            }, 2000);
+            validTimeoutId = setTimeout(function() {
+                  displayValid.style.display = "none";
+              }, 2000);
           }
 
       
