@@ -5,127 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Credit Card Checker</title>
   <link rel="stylesheet" href="style.css">
-  <script src="main.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <div class="credit-card">
-      <p class="credit-card__text">Want to check you if your credit card is valid?</p>
-      <input type="number" id="userInput" class="js-input" placeholder="type in your number and press ENTER" onkeydown="handleEnter(event)">
-      <p class="credit-cart__warning">Remember not to reveal your credit card number to<br> strangers like myself. Use a number generator instead.</p>
+      <p class="credit-card__text">Want to check you if the credit card is valid?</p>
+      <input type="number" id="userInput" class="js-input" placeholder="Type in your number and press ENTER" >
+      <p class="credit-cart__warning">Remember not to reveal your credit card number to<br> strangers like myself. <a href="https://www.freeformatter.com/credit-card-number-generator-validator.html" target="_blank">Generate</a> to get a valid one, change digits to spoil it.</p>
       <div>
-        <p id="js-return-valid"></p>
-        <p id="js-return-invalid"></p>
+        
       </div>
     </div>
   </div>
-  <script>
-    const valid1 = 4539677908016808;
-    const valid4 = 6011144340682905;
-    const invalid1 = 4532778771091795;
-    const invalid2 = 5795593392134643;
-
-    const displayValid = document.getElementById('js-return-valid');
-    const displayInvalid = document.getElementById('js-return-invalid');
-    let input;
-    let validTimeoutId;
-    let invalidTimeoutId;
-
-    
-    function handleEnter(event) {
-      
-      if (event.key === 'Enter') {
-        input = document.getElementById("userInput").value;
-        input = String(input).split('').map((input
-        ) => { return Number(input) });
-
-        if (input.length === 0) {
-          displayValid.style.display = 'none';
-          displayInvalid.style.display = 'none';
-          return;
-        }
-
-        displayValid.style.display = "block";
-        displayInvalid.style.display = "block";
-
-        clearTimeout(validTimeoutId);
-        clearTimeout(invalidTimeoutId);
-
-        console.log(input);
-        console.log(validateCred(input));  
-
-        if (!validateCred(input)) { 
-         
-          displayInvalid.textContent = 'This number is not valid.';
-          displayValid.style.display = "none";
-          invalidTimeoutId = setTimeout(() => {
-                displayInvalid.style.display = 'none';
-            }, 2000); 
-
-        } else {
-          
-            displayValid.textContent = `This number is valid.`;
-            displayInvalid.style.display = "none"
-            validTimeoutId = setTimeout(function() {
-                  displayValid.style.display = "none";
-              }, 2000);
-          }
-
-      
-          document.getElementById("userInput").value = null;
-        } 
-    }
-    
-
+  <div class="container">
+    <div class="credit-card">
+       <p class="credit-card__text">This is what the coder has to say:</p>
+        <p id="js-return-valid"></p>
+        <p id="js-return-invalid"></p>
+        <p id="js-warning-not-number"></p>
+        <p id="js-warning-not-length"></p>
+      </div>
+    </div>
+  </div>
   
-    // Checks if the summed up numbers devided by 10 give 0.
-    function modulo10(num) {
-      if (num % 10 === 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
 
-    // Sums up checked and doubled digits.
-    function totalValue(array) {
-      let total = 0;
-      array.forEach(num => {
-        total +=num;
-      });
-      return total;
-    }
-    
-    // Takes an array of numbers, doubles every second number starting from the end, and substracts 9 if the doubled digit is greater than 9. Then usues totalValue function to sum it up and saves and returns the result as a const with modulo10() on it.
-
-    function validateCred(array) {
-      const checkedDigitArray = [];
-      const doubledArray = [];
-
-      for (let i = array.length - 1; i >= 0; i-= 2) {
-        const checkedDigit = array[i];
-        checkedDigitArray.push(checkedDigit);
-      }
-
-      for (let i = array.length - 2; i >= 0; i-= 2) {
-        const everyOtherDigit = array[i];
-        let makeItDouble = everyOtherDigit * 2;
-          if (makeItDouble > 9) {
-            makeItDouble -= 9;
-          }
-        doubledArray.push(makeItDouble);
-      }
-
-      const allDigitsArray = checkedDigitArray.concat(doubledArray); //.concat łączy dwie tablice w jedną.
-
-      const checkWithModulo = modulo10((totalValue(allDigitsArray)));
-      return checkWithModulo;
-      
-    };
-
-
-    
-
-  </script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

@@ -3,36 +3,73 @@
 }
 
 html {
+  --s: 350px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+  
+  background:
+    repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+     calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+    repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s)*0.577);
+}
+
+html {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: #0C4A60;
+}
+
+img {
+  display: block;
+  width: 80px;
+  padding-bottom: 1rem;
+  
 }
 
 .credit-card {
   width: 500px;
   height: 300px;
-  border: 1px solid grey;
+  border: 1px solid #366;
   border-radius: 10px;
-  background-color: grey;
-  margin: 5em auto;
+  background-color: #ABDFF1;
+  margin: 4em auto;
   padding-top: 2em;
 }
 
 .credit-card__text,
 .credit-cart__warning,
 p {
-  margin-left: 2em;
+  margin-left: 32px;
+}
+
+.credit-cart__warning {
+  font-size: .8rem;
+  width: 50ch;
 }
 
 #js-return-valid {
-  color: green;
+  color: #2d4017;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
-#js-return-invalid {
-  color: red;
+#js-return-invalid,
+#js-warning-not-number {
+  color: #ad200e;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+#js-warning-not-length {
+  color: #0e186e;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 input {
@@ -53,4 +90,39 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+@media (max-width: 520px) {
+  .credit-card {
+    width: 300px;
+  }
+
+.credit-cart__warning {
+  font-size: .8rem;
+  width: 25ch;
+}
+
+input {
+  width: 250px;
+  padding-left: 0.5em;
+}
+
+#js-return-valid {
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 20ch;
+}
+
+#js-return-invalid,
+#js-warning-not-number {
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 20ch;
+}
+
+#js-warning-not-length {
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 20ch;
+}
 }
