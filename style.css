@@ -48,20 +48,39 @@ p {
   margin-left: 32px;
 }
 
+.credit-card__text {
+  font-size: 1.1rem;
+}
+
+.button {
+  text-align: right;
+  padding-right: 4.5rem;
+}
+
+#js-button {
+  color: white;
+  background-color: #0e186e;
+  border-radius: 10px;
+  padding-inline: 1em;
+  padding-block: .5em;
+  margin-top: .5em;
+  cursor: pointer;
+}
+
 .credit-cart__warning {
   font-size: .8rem;
-  width: 50ch;
+  width: 50ch; 
 }
 
 #js-return-valid {
-  color: #2d4017;
+  color: #415c22;
   font-weight: 600;
   font-size: 1.5rem;
 }
 
 #js-return-invalid,
 #js-warning-not-number {
-  color: #ad200e;
+  color: #351814;
   font-weight: 600;
   font-size: 1.5rem;
 }
@@ -95,34 +114,34 @@ input[type=number] {
 @media (max-width: 520px) {
   .credit-card {
     width: 300px;
+    height: 350px;
   }
 
-.credit-cart__warning {
-  font-size: .8rem;
-  width: 25ch;
-}
+  .credit-cart__warning {
+    font-size: .8rem;
+    width: 29ch;
+  }
 
-input {
-  width: 250px;
-  padding-left: 0.5em;
-}
+  p {
+    margin-right: 32px;
+  }
 
-#js-return-valid {
-  font-weight: 600;
-  font-size: 1.2rem;
-  width: 20ch;
-}
+  input {
+    width: 250px;
+    padding-left: 0.5em;
+  }
 
-#js-return-invalid,
-#js-warning-not-number {
-  font-weight: 600;
-  font-size: 1.2rem;
-  width: 20ch;
-}
+  .button {
+    text-align: center;
+    padding-right: 0;
+  }
 
-#js-warning-not-length {
-  font-weight: 600;
-  font-size: 1.2rem;
-  width: 20ch;
-}
+  #js-return-valid,
+  #js-return-invalid,
+  #js-warning-not-number,
+  #js-warning-not-length {
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 20ch;
+  }
 }
