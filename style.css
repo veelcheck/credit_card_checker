@@ -97,6 +97,7 @@ input {
   margin-left: 2em;
   padding-left: 1em;
   border: none;
+  font-size: 16px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -129,7 +130,6 @@ input[type=number] {
   input {
     width: 250px;
     padding-left: 0.5em;
-    font-size: 16px;
   }
 
   .button {
