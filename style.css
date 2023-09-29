@@ -129,6 +129,7 @@ input[type=number] {
   input {
     width: 250px;
     padding-left: 0.5em;
+    font-size: 16px;
   }
 
   .button {
