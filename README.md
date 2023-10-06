@@ -1,4 +1,4 @@
-This started as a *CodeCademy* project where you could check if a single number or batches of numbers are valid.
+This started as a *Codecademy* project where you could check if a single number or batches of numbers are valid.
 I've decided to stick to individual numbers and added some simple HTML and CSS for it to look nice.
 
 # JavaScript: 
