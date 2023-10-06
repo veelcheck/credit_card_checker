@@ -1,5 +1,6 @@
 This started as a *Codecademy* project where you could check if a single number or batches of numbers are valid.
-I've decided to stick to individual numbers and added some simple HTML and CSS for it to look nice.
+I've decided to stick to individual numbers and added some simple HTML and CSS for it to look nice.  
+[See demo version here](https://veelcheck.github.io/credit_card_checker/).
 
 # JavaScript: 
 
